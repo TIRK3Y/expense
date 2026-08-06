@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Menu, Wallet, X } from "lucide-react";
+import { ArrowRight, Menu, Wallet, X } from "lucide-react";
 
 const navItems = [
   {
@@ -11,7 +11,7 @@ const navItems = [
     href: "#features",
   },
   {
-    title: "How It Works",
+    title: "How it Works",
     href: "#how-it-works",
   },
   {
@@ -29,55 +29,72 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => {
-      setScrolled(window.scrollY > 20);
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 15);
     };
 
-    window.addEventListener("scroll", onScroll);
+    handleScroll();
 
-    return () => window.removeEventListener("scroll", onScroll);
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
     <>
       <motion.header
-        initial={{ y: -80, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
+        initial={{
+          y: -60,
+          opacity: 0,
+        }}
+        animate={{
+          y: 0,
+          opacity: 1,
+        }}
         transition={{
           duration: 0.7,
-          ease: "easeOut",
         }}
-        className="fixed left-0 top-0 z-50 w-full px-5 py-5"
+        className="fixed inset-x-0 top-0 z-50 px-4 pt-5 sm:px-6 lg:px-8"
       >
         <div
-          className={`mx-auto flex h-16 max-w-7xl items-center justify-between rounded-2xl border px-6 transition-all duration-300 ${
+          className={`mx-auto flex h-[72px] max-w-[1440px] items-center justify-between rounded-2xl border transition-all duration-300 ${
             scrolled
-              ? "border-white/30 bg-white/80 shadow-xl backdrop-blur-xl"
-              : "border-transparent bg-white/40 backdrop-blur-md"
+              ? "border-slate-200 bg-white/80 shadow-[0_20px_60px_rgba(15,23,42,.08)] backdrop-blur-2xl"
+              : "border-white/60 bg-white/40 backdrop-blur-xl"
           }`}
         >
-          {/* Logo */}
+          {/* Left */}
 
-          <Link href="/" className="flex items-center gap-3">
-            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-600">
-              <Wallet size={22} className="text-white" />
-            </div>
+          <Link href="/" className="group flex items-center gap-4 pl-5">
+            <motion.div
+              whileHover={{
+                y: -2,
+                scale: 1.05,
+              }}
+              className="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-600 text-white shadow-lg"
+            >
+              <Wallet size={20} />
+            </motion.div>
 
             <div>
-              <h2 className="text-lg font-bold">ExpenseAI</h2>
+              <h2 className="text-lg font-black tracking-tight text-slate-900">
+                ExpenseAI
+              </h2>
 
-              <p className="text-xs text-gray-500">Smart Finance</p>
+              <p className="text-xs font-medium text-slate-500">
+                AI Personal Finance
+              </p>
             </div>
           </Link>
 
           {/* Desktop */}
 
-          <nav className="hidden items-center gap-8 lg:flex">
+          <nav className="hidden items-center rounded-full border border-slate-200 bg-white/70 px-2 py-2 backdrop-blur-xl lg:flex">
             {navItems.map((item) => (
               <Link
                 key={item.title}
                 href={item.href}
-                className="text-sm font-medium text-gray-700 transition hover:text-blue-600"
+                className="rounded-full px-5 py-2 text-sm font-semibold text-slate-600 transition-all duration-300 hover:bg-slate-100 hover:text-slate-950"
               >
                 {item.title}
               </Link>
@@ -86,29 +103,39 @@ const Navbar = () => {
 
           {/* Right */}
 
-          <div className="hidden items-center gap-3 lg:flex">
+          <div className="hidden items-center gap-3 pr-5 lg:flex">
             <Link
               href="/login"
-              className="text-sm font-medium text-gray-700 hover:text-blue-600"
+              className="rounded-xl px-5 py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-100"
             >
               Login
             </Link>
 
-            <Link
-              href="/signup"
-              className="rounded-xl bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-700"
+            <motion.div
+              whileHover={{
+                y: -2,
+              }}
+              whileTap={{
+                scale: 0.98,
+              }}
             >
-              Get Started
-            </Link>
+              <Link
+                href="/signup"
+                className="inline-flex items-center gap-2 rounded-xl bg-slate-950 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-600"
+              >
+                Get Started
+                <ArrowRight size={16} />
+              </Link>
+            </motion.div>
           </div>
 
           {/* Mobile */}
 
           <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden"
+            onClick={() => setMobileMenuOpen((prev) => !prev)}
+            className="mr-5 flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200 bg-white lg:hidden"
           >
-            {mobileMenuOpen ? <X /> : <Menu />}
+            {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
       </motion.header>
@@ -133,32 +160,42 @@ const Navbar = () => {
             transition={{
               duration: 0.25,
             }}
-            className="fixed left-5 right-5 top-24 z-40 rounded-2xl border border-white/20 bg-white p-6 shadow-2xl backdrop-blur-xl lg:hidden"
+            className="fixed left-4 right-4 top-24 z-40 overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-[0_25px_80px_rgba(15,23,42,.08)] lg:hidden"
           >
-            <div className="flex flex-col gap-5">
-              {navItems.map((item) => (
+            <div className="p-6">
+              <nav className="flex flex-col gap-2">
+                {navItems.map((item) => (
+                  <Link
+                    key={item.title}
+                    href={item.href}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="rounded-xl px-4 py-3 font-semibold text-slate-700 transition hover:bg-slate-100"
+                  >
+                    {item.title}
+                  </Link>
+                ))}
+              </nav>
+
+              <div className="my-5 border-t border-slate-200" />
+
+              <div className="flex flex-col gap-3">
                 <Link
-                  key={item.title}
-                  href={item.href}
+                  href="/login"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="font-medium text-gray-700"
+                  className="rounded-xl border border-slate-200 py-3 text-center font-semibold text-slate-700 transition hover:bg-slate-50"
                 >
-                  {item.title}
+                  Login
                 </Link>
-              ))}
 
-              <hr />
-
-              <Link href="/login" className="font-medium text-gray-700">
-                Login
-              </Link>
-
-              <Link
-                href="/signup"
-                className="rounded-xl bg-blue-600 py-3 text-center font-semibold text-white"
-              >
-                Get Started
-              </Link>
+                <Link
+                  href="/signup"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-slate-950 py-3 font-semibold text-white transition hover:bg-blue-600"
+                >
+                  Get Started
+                  <ArrowRight size={16} />
+                </Link>
+              </div>
             </div>
           </motion.div>
         )}

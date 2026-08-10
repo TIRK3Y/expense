@@ -7,28 +7,28 @@ const stats = [
   {
     value: "25K+",
     label: "Active Users",
-    description: "Individuals managing their finances with ExpenseAI.",
+    description: "People managing their finances with ExpenseAI.",
     icon: TrendingUp,
     color: "from-blue-600 to-cyan-500",
   },
   {
     value: "₹18M+",
     label: "Expenses Tracked",
-    description: "Transactions analyzed to help users understand spending.",
+    description: "Transactions organized and analyzed.",
     icon: PiggyBank,
     color: "from-emerald-500 to-green-600",
   },
   {
     value: "94%",
     label: "AI Accuracy",
-    description: "Personalized insights generated from spending behavior.",
+    description: "Personalized insights based on spending patterns.",
     icon: Brain,
     color: "from-violet-600 to-fuchsia-500",
   },
   {
     value: "256-bit",
-    label: "Bank-Level Security",
-    description: "Your financial information stays encrypted and protected.",
+    label: "Secure",
+    description: "Your financial information stays protected.",
     icon: ShieldCheck,
     color: "from-orange-500 to-red-500",
   },
@@ -36,11 +36,105 @@ const stats = [
 
 const FeatureStats = () => {
   return (
-    <section className="relative">
+    <motion.div
+      initial={{
+        opacity: 0,
+        y: 25,
+      }}
+      whileInView={{
+        opacity: 1,
+        y: 0,
+      }}
+      viewport={{
+        once: true,
+        amount: 0.2,
+      }}
+      transition={{
+        duration: 0.6,
+      }}
+      className="overflow-hidden rounded-[28px] border border-slate-200 bg-slate-950 p-6 text-white shadow-[0_20px_60px_rgba(15,23,42,.12)] sm:p-8"
+    >
+      {/* Header */}
+
+      <div className="mx-auto max-w-2xl text-center">
+        <span className="inline-flex rounded-full border border-blue-400/20 bg-blue-500/10 px-3 py-1.5 text-xs font-semibold text-blue-300">
+          Why ExpenseAI
+        </span>
+
+        <h2 className="mt-4 text-3xl font-black tracking-tight sm:text-4xl">
+          Built for better
+          <span className="block bg-gradient-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent">
+            financial habits.
+          </span>
+        </h2>
+
+        <p className="mt-3 text-sm leading-6 text-slate-400 sm:text-base">
+          Everything you need to understand your spending, control your budget,
+          and build better saving habits.
+        </p>
+      </div>
+
+      {/* Stats */}
+
+      <div className="mt-10 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+        {stats.map((stat, index) => {
+          const Icon = stat.icon;
+
+          return (
+            <motion.div
+              key={stat.label}
+              initial={{
+                opacity: 0,
+                y: 15,
+              }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+              }}
+              viewport={{
+                once: true,
+              }}
+              transition={{
+                delay: index * 0.08,
+                duration: 0.45,
+              }}
+              whileHover={{
+                y: -3,
+              }}
+              className="group rounded-2xl border border-white/10 bg-white/[0.04] p-4 transition-colors duration-300 hover:border-white/15 hover:bg-white/[0.07]"
+            >
+              <div className="flex items-start justify-between">
+                <div
+                  className={`flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br ${stat.color}`}
+                >
+                  <Icon size={18} />
+                </div>
+
+                <span className="text-xs font-medium text-slate-500">2026</span>
+              </div>
+
+              <h3 className="mt-5 text-2xl font-black tracking-tight">
+                {stat.value}
+              </h3>
+
+              <h4 className="mt-1 text-sm font-semibold text-white">
+                {stat.label}
+              </h4>
+
+              <p className="mt-2 text-xs leading-5 text-slate-400">
+                {stat.description}
+              </p>
+            </motion.div>
+          );
+        })}
+      </div>
+
+      {/* Bottom Strip */}
+
       <motion.div
         initial={{
           opacity: 0,
-          y: 40,
+          y: 15,
         }}
         whileInView={{
           opacity: 1,
@@ -48,135 +142,42 @@ const FeatureStats = () => {
         }}
         viewport={{
           once: true,
-          amount: 0.25,
         }}
         transition={{
-          duration: 0.8,
+          delay: 0.3,
+          duration: 0.5,
         }}
-        className="overflow-hidden rounded-[36px] border border-slate-200 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 p-8 text-white shadow-[0_30px_80px_rgba(15,23,42,.18)] lg:p-12"
+        className="mt-6 flex flex-col gap-5 rounded-2xl border border-white/10 bg-white/[0.04] p-5 sm:flex-row sm:items-center sm:justify-between"
       >
-        {/* Header */}
+        <div className="max-w-xl">
+          <h3 className="text-lg font-bold text-white">
+            Smarter money management starts here.
+          </h3>
 
-        <div className="mx-auto max-w-3xl text-center">
-          <span className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-blue-300 backdrop-blur-xl">
-            Why ExpenseAI?
-          </span>
-
-          <h2 className="mt-6 text-4xl font-black leading-tight tracking-tight lg:text-5xl">
-            Trusted by people who
-            <span className="block bg-gradient-to-r from-blue-400 via-cyan-300 to-violet-400 bg-clip-text text-transparent">
-              want better financial habits.
-            </span>
-          </h2>
-
-          <p className="mt-6 text-lg leading-8 text-slate-300">
-            Everything is built to help you spend less, save more, and make
-            confident financial decisions every day.
+          <p className="mt-1.5 text-sm leading-6 text-slate-400">
+            Track expenses, manage budgets, build savings, and get personalized
+            financial insights from one dashboard.
           </p>
         </div>
 
-        {/* Stats */}
-
-        <div className="mt-16 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-          {stats.map((stat, index) => {
-            const Icon = stat.icon;
-
-            return (
-              <motion.div
-                key={stat.label}
-                initial={{
-                  opacity: 0,
-                  y: 30,
-                }}
-                whileInView={{
-                  opacity: 1,
-                  y: 0,
-                }}
-                viewport={{
-                  once: true,
-                }}
-                transition={{
-                  delay: index * 0.12,
-                  duration: 0.6,
-                }}
-                whileHover={{
-                  y: -6,
-                }}
-                className="group rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl transition-all duration-300 hover:border-blue-500/30 hover:bg-white/10"
-              >
-                <div
-                  className={`inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br ${stat.color} shadow-lg`}
-                >
-                  <Icon size={24} />
-                </div>
-
-                <h3 className="mt-6 text-4xl font-black tracking-tight">
-                  {stat.value}
-                </h3>
-
-                <h4 className="mt-2 text-lg font-semibold">{stat.label}</h4>
-
-                <p className="mt-3 text-sm leading-7 text-slate-300">
-                  {stat.description}
-                </p>
-              </motion.div>
-            );
-          })}
-        </div>
-
-        {/* Bottom Strip */}
-
-        <motion.div
-          initial={{
-            opacity: 0,
-            y: 30,
-          }}
-          whileInView={{
-            opacity: 1,
-            y: 0,
-          }}
-          viewport={{
-            once: true,
-          }}
-          transition={{
-            delay: 0.4,
-          }}
-          className="mt-16 flex flex-col items-center justify-between gap-6 rounded-3xl border border-white/10 bg-white/5 px-8 py-6 backdrop-blur-xl lg:flex-row"
-        >
+        <div className="flex shrink-0 items-center gap-6 sm:gap-8">
           <div>
-            <h3 className="text-2xl font-bold">
-              Smarter money management starts today.
-            </h3>
-
-            <p className="mt-2 text-slate-300">
-              Track expenses, control budgets, build savings, and receive
-              AI-powered financial guidance—all from one beautifully designed
-              dashboard.
-            </p>
+            <h4 className="text-xl font-black text-blue-400">50+</h4>
+            <p className="mt-0.5 text-[11px] text-slate-500">Categories</p>
           </div>
 
-          <div className="flex gap-10">
-            <div className="text-center">
-              <h4 className="text-3xl font-black text-blue-400">50+</h4>
-
-              <p className="mt-1 text-sm text-slate-400">Categories</p>
-            </div>
-
-            <div className="text-center">
-              <h4 className="text-3xl font-black text-cyan-400">AI</h4>
-
-              <p className="mt-1 text-sm text-slate-400">Insights</p>
-            </div>
-
-            <div className="text-center">
-              <h4 className="text-3xl font-black text-violet-400">24/7</h4>
-
-              <p className="mt-1 text-sm text-slate-400">Access</p>
-            </div>
+          <div>
+            <h4 className="text-xl font-black text-cyan-400">AI</h4>
+            <p className="mt-0.5 text-[11px] text-slate-500">Insights</p>
           </div>
-        </motion.div>
+
+          <div>
+            <h4 className="text-xl font-black text-violet-400">24/7</h4>
+            <p className="mt-0.5 text-[11px] text-slate-500">Access</p>
+          </div>
+        </div>
       </motion.div>
-    </section>
+    </motion.div>
   );
 };
 

@@ -3,12 +3,41 @@
 import { motion } from "framer-motion";
 import { Brain, CreditCard, PiggyBank, TrendingUp, Wallet } from "lucide-react";
 
+const summaryCards = [
+  {
+    title: "Income",
+    value: "₹52K",
+    color: "text-emerald-600",
+    icon: TrendingUp,
+  },
+  {
+    title: "Expenses",
+    value: "₹18K",
+    color: "text-red-500",
+    icon: CreditCard,
+  },
+  {
+    title: "Savings",
+    value: "₹34K",
+    color: "text-blue-600",
+    icon: PiggyBank,
+  },
+];
+
+const insights = [
+  "Automatic expense categorization",
+  "AI savings recommendations",
+  "Budget forecasting",
+  "Spending predictions",
+  "Financial health score",
+];
+
 const FeatureShowcase = () => {
   return (
     <motion.div
       initial={{
         opacity: 0,
-        y: 40,
+        y: 24,
       }}
       whileInView={{
         opacity: 1,
@@ -16,132 +45,111 @@ const FeatureShowcase = () => {
       }}
       viewport={{
         once: true,
-        amount: 0.2,
+        amount: 0.15,
       }}
       transition={{
-        duration: 0.8,
+        duration: 0.6,
       }}
-      className="relative mx-auto max-w-7xl"
+      className="relative mx-auto max-w-5xl"
     >
       {/* Glow */}
 
-      <div className="absolute inset-0 rounded-[40px] bg-blue-500/5 blur-3xl" />
+      <div className="pointer-events-none absolute inset-0 rounded-[28px] bg-blue-500/5 blur-3xl" />
 
-      {/* Container */}
+      {/* Main Card */}
 
-      <div className="relative overflow-hidden rounded-[36px] border border-slate-200 bg-white shadow-[0_30px_80px_rgba(15,23,42,.06)]">
-        <div className="grid lg:grid-cols-[1fr_430px]">
-          {/* Left */}
+      <div className="relative overflow-hidden rounded-[24px] border border-slate-200 bg-white shadow-[0_20px_60px_rgba(15,23,42,.07)]">
+        <div className="grid lg:grid-cols-[1.15fr_.85fr]">
+          {/* Dashboard */}
 
-          <div className="border-b border-slate-200 p-8 lg:border-b-0 lg:border-r lg:p-12">
+          <div className="p-5 sm:p-6">
             {/* Window */}
 
-            <div className="mb-8 flex items-center gap-2">
-              <span className="h-3 w-3 rounded-full bg-red-400" />
-              <span className="h-3 w-3 rounded-full bg-yellow-400" />
-              <span className="h-3 w-3 rounded-full bg-green-400" />
+            <div className="mb-5 flex items-center gap-1.5">
+              <span className="h-2.5 w-2.5 rounded-full bg-red-400" />
+              <span className="h-2.5 w-2.5 rounded-full bg-yellow-400" />
+              <span className="h-2.5 w-2.5 rounded-full bg-green-400" />
+
+              <span className="ml-2 text-[10px] font-medium text-slate-400">
+                Dashboard
+              </span>
             </div>
 
-            {/* Header */}
+            {/* Balance */}
 
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-slate-500">
-                  Dashboard Overview
+                <p className="text-[11px] font-medium text-slate-500">
+                  Total Balance
                 </p>
 
-                <h3 className="mt-1 text-3xl font-black text-slate-950">
+                <h3 className="mt-0.5 text-2xl font-black tracking-tight text-slate-950">
                   ₹84,520
                 </h3>
               </div>
 
-              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-600 text-white">
-                <Wallet size={24} />
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-600 text-white">
+                <Wallet size={18} />
               </div>
             </div>
 
-            {/* Cards */}
+            {/* Summary Cards */}
 
-            <div className="mt-10 grid gap-5 md:grid-cols-3">
-              {[
-                {
-                  title: "Income",
-                  value: "₹52K",
-                  color: "text-emerald-600",
-                  icon: TrendingUp,
-                },
-                {
-                  title: "Expenses",
-                  value: "₹18K",
-                  color: "text-red-500",
-                  icon: CreditCard,
-                },
-                {
-                  title: "Savings",
-                  value: "₹34K",
-                  color: "text-blue-600",
-                  icon: PiggyBank,
-                },
-              ].map((card) => {
+            <div className="mt-4 grid grid-cols-3 gap-2.5">
+              {summaryCards.map((card) => {
                 const Icon = card.icon;
 
                 return (
                   <motion.div
                     key={card.title}
                     whileHover={{
-                      y: -4,
+                      y: -2,
                     }}
-                    className="rounded-2xl border border-slate-200 bg-slate-50 p-5"
+                    className="rounded-xl border border-slate-200 bg-slate-50 p-3"
                   >
                     <div className="flex items-center justify-between">
-                      <span className="text-sm text-slate-500">
+                      <span className="text-[10px] font-medium text-slate-500">
                         {card.title}
                       </span>
 
-                      <Icon size={18} className={card.color} />
+                      <Icon size={14} className={card.color} />
                     </div>
 
-                    <h4 className="mt-4 text-2xl font-black text-slate-900">
+                    <p className="mt-2 text-base font-black text-slate-900">
                       {card.value}
-                    </h4>
+                    </p>
                   </motion.div>
                 );
               })}
             </div>
 
-            {/* Graph */}
+            {/* Chart */}
 
-            <div className="mt-10 rounded-3xl border border-slate-200 bg-slate-50 p-6">
-              <div className="mb-6 flex items-center justify-between">
+            <div className="mt-4 rounded-xl border border-slate-200 bg-slate-50 p-3">
+              <div className="flex items-center justify-between">
                 <div>
-                  <h4 className="font-bold text-slate-900">
+                  <h4 className="text-xs font-bold text-slate-900">
                     Spending Analytics
                   </h4>
 
-                  <p className="text-sm text-slate-500">Monthly Overview</p>
+                  <p className="mt-0.5 text-[10px] text-slate-500">
+                    Monthly Overview
+                  </p>
                 </div>
 
-                <span className="rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold text-blue-600">
+                <span className="rounded-full bg-blue-100 px-2 py-1 text-[10px] font-bold text-blue-600">
                   +12.4%
                 </span>
               </div>
 
-              <svg viewBox="0 0 520 180" className="h-48 w-full">
-                {[40, 90, 140].map((y) => (
-                  <line
-                    key={y}
-                    x1="0"
-                    y1={y}
-                    x2="520"
-                    y2={y}
-                    stroke="#E2E8F0"
-                    strokeDasharray="5 5"
-                  />
-                ))}
-
+              <svg
+                viewBox="0 0 520 150"
+                className="mt-2 h-24 w-full"
+                preserveAspectRatio="none"
+              >
                 <defs>
                   <linearGradient id="featureArea" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#2563EB" stopOpacity=".22" />
+                    <stop offset="0%" stopColor="#2563EB" stopOpacity=".16" />
 
                     <stop offset="100%" stopColor="#2563EB" stopOpacity="0" />
                   </linearGradient>
@@ -152,6 +160,18 @@ const FeatureShowcase = () => {
                     <stop offset="100%" stopColor="#7C3AED" />
                   </linearGradient>
                 </defs>
+
+                {[35, 75, 115].map((y) => (
+                  <line
+                    key={y}
+                    x1="0"
+                    y1={y}
+                    x2="520"
+                    y2={y}
+                    stroke="#E2E8F0"
+                    strokeDasharray="4 5"
+                  />
+                ))}
 
                 <motion.path
                   initial={{
@@ -164,9 +184,9 @@ const FeatureShowcase = () => {
                     once: true,
                   }}
                   transition={{
-                    duration: 1.5,
+                    duration: 1.1,
                   }}
-                  d="M20 140 L80 115 L140 120 L200 82 L260 92 L320 60 L380 72 L440 45 L500 58 L500 180 L20 180 Z"
+                  d="M10 115 L80 92 L140 98 L200 62 L260 74 L320 45 L380 58 L440 30 L510 48 L510 150 L10 150 Z"
                   fill="url(#featureArea)"
                 />
 
@@ -181,11 +201,11 @@ const FeatureShowcase = () => {
                     once: true,
                   }}
                   transition={{
-                    duration: 1.4,
+                    duration: 1,
                   }}
-                  d="M20 140 L80 115 L140 120 L200 82 L260 92 L320 60 L380 72 L440 45 L500 58"
+                  d="M10 115 L80 92 L140 98 L200 62 L260 74 L320 45 L380 58 L440 30 L510 48"
                   stroke="url(#featureLine)"
-                  strokeWidth="5"
+                  strokeWidth="4"
                   strokeLinecap="round"
                   fill="none"
                 />
@@ -193,60 +213,78 @@ const FeatureShowcase = () => {
             </div>
           </div>
 
-          {/* Right */}
+          {/* AI Panel */}
 
-          <div className="bg-gradient-to-br from-slate-900 via-slate-950 to-black p-10 text-white">
-            <div className="flex h-full flex-col">
-              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-600">
-                <Brain size={26} />
+          <div className="bg-slate-950 p-5 text-white sm:p-6">
+            <div className="flex items-center gap-3">
+              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-blue-600">
+                <Brain size={17} />
               </div>
 
-              <h3 className="mt-8 text-3xl font-black leading-tight">
-                AI analyzes
-                <br />
-                every expense.
-              </h3>
-
-              <p className="mt-6 text-slate-300 leading-8">
-                ExpenseAI continuously studies your spending habits, identifies
-                unnecessary expenses, predicts future spending, and recommends
-                smarter financial decisions.
-              </p>
-
-              <div className="mt-10 space-y-4">
-                {[
-                  "Automatic expense categorization",
-                  "AI-powered savings recommendations",
-                  "Budget forecasting",
-                  "Monthly spending predictions",
-                  "Financial health score",
-                ].map((item) => (
-                  <motion.div
-                    key={item}
-                    whileHover={{
-                      x: 4,
-                    }}
-                    className="flex items-center gap-4 rounded-2xl bg-white/5 p-4 backdrop-blur-xl"
-                  >
-                    <div className="h-2.5 w-2.5 rounded-full bg-blue-500" />
-
-                    <span className="font-medium text-slate-200">{item}</span>
-                  </motion.div>
-                ))}
-              </div>
-
-              <div className="mt-auto rounded-3xl bg-blue-600 p-6">
-                <p className="text-sm text-blue-100">
-                  Potential Monthly Savings
+              <div>
+                <p className="text-[10px] font-semibold uppercase tracking-wider text-blue-300">
+                  AI Insights
                 </p>
 
-                <h2 className="mt-2 text-4xl font-black">₹4,820</h2>
-
-                <p className="mt-2 text-sm leading-6 text-blue-100">
-                  Based on your spending patterns and AI predictions.
-                </p>
+                <h3 className="text-lg font-black">Smarter spending.</h3>
               </div>
             </div>
+
+            <p className="mt-3 text-xs leading-5 text-slate-400">
+              Analyze spending patterns, identify unnecessary expenses, and
+              discover practical ways to save more.
+            </p>
+
+            {/* Insights */}
+
+            <div className="mt-4 space-y-1.5">
+              {insights.map((insight, index) => (
+                <motion.div
+                  key={insight}
+                  initial={{
+                    opacity: 0,
+                    x: 8,
+                  }}
+                  whileInView={{
+                    opacity: 1,
+                    x: 0,
+                  }}
+                  viewport={{
+                    once: true,
+                  }}
+                  transition={{
+                    delay: index * 0.05,
+                    duration: 0.3,
+                  }}
+                  className="flex items-center gap-2 rounded-lg bg-white/[0.05] px-3 py-2"
+                >
+                  <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-blue-500" />
+
+                  <span className="text-[10px] font-medium text-slate-300">
+                    {insight}
+                  </span>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Savings */}
+
+            <motion.div
+              whileHover={{
+                y: -2,
+              }}
+              className="mt-4 rounded-xl bg-blue-600 p-4"
+            >
+              <p className="text-[10px] font-medium text-blue-100">
+                Potential Monthly Savings
+              </p>
+
+              <h3 className="mt-1 text-2xl font-black">₹4,820</h3>
+
+              <p className="mt-1 text-[10px] leading-4 text-blue-100">
+                Based on your spending patterns and AI predictions.
+              </p>
+            </motion.div>
           </div>
         </div>
       </div>

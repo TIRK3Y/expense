@@ -1,13 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import {
-  Brain,
-  ChartNoAxesCombined,
-  PiggyBank,
-  Target,
-  Wallet,
-} from "lucide-react";
+import { Brain, ChartNoAxesCombined, Target, Wallet } from "lucide-react";
 
 interface FeatureCardProps {
   title: string;
@@ -43,7 +37,7 @@ const FeatureCard = ({ title, description, icon }: FeatureCardProps) => {
     <motion.article
       initial={{
         opacity: 0,
-        y: 35,
+        y: 20,
       }}
       whileInView={{
         opacity: 1,
@@ -51,91 +45,80 @@ const FeatureCard = ({ title, description, icon }: FeatureCardProps) => {
       }}
       viewport={{
         once: true,
-        amount: 0.25,
+        amount: 0.2,
       }}
       transition={{
-        duration: 0.6,
+        duration: 0.45,
       }}
       whileHover={{
-        y: -8,
+        y: -5,
       }}
-      className="group relative overflow-hidden rounded-[28px] border border-slate-200 bg-white p-7 shadow-[0_10px_40px_rgba(15,23,42,.05)] transition-all duration-300 hover:border-blue-200 hover:shadow-[0_25px_60px_rgba(37,99,235,.12)]"
+      className="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-5 shadow-[0_8px_30px_rgba(15,23,42,.04)] transition-all duration-300 hover:border-blue-200 hover:shadow-[0_16px_40px_rgba(37,99,235,.09)]"
     >
-      {/* Background Glow */}
+      {/* Subtle Glow */}
 
-      <div className="absolute -right-24 -top-24 h-48 w-48 rounded-full bg-blue-100/20 blur-3xl transition-all duration-500 group-hover:bg-blue-200/30" />
+      <div className="pointer-events-none absolute -right-16 -top-16 h-32 w-32 rounded-full bg-blue-100/30 blur-3xl transition-all duration-500 group-hover:bg-blue-200/40" />
 
-      {/* Icon */}
+      {/* Header */}
 
-      <motion.div
-        whileHover={{
-          scale: 1.08,
-        }}
-        transition={{
-          duration: 0.25,
-        }}
-        className={`relative flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br ${gradients[icon]} text-white shadow-lg`}
-      >
-        <Icon size={28} />
-      </motion.div>
+      <div className="relative flex items-start justify-between gap-4">
+        <div
+          className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${gradients[icon]} text-white shadow-md`}
+        >
+          <Icon size={20} />
+        </div>
+
+        <span
+          className={`rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide ${backgrounds[icon]} text-slate-600`}
+        >
+          Active
+        </span>
+      </div>
 
       {/* Content */}
 
-      <div className="relative mt-8">
-        <h3 className="text-2xl font-black tracking-tight text-slate-900">
+      <div className="relative mt-5">
+        <h3 className="text-lg font-bold tracking-tight text-slate-900">
           {title}
         </h3>
 
-        <p className="mt-4 text-[15px] leading-7 text-slate-600">
-          {description}
-        </p>
+        <p className="mt-2 text-sm leading-6 text-slate-600">{description}</p>
       </div>
 
-      {/* Bottom Section */}
+      {/* Compact Progress */}
 
-      <div className="relative mt-8">
-        <div
-          className={`rounded-2xl ${backgrounds[icon]} border border-slate-100 p-4 transition-all duration-300 group-hover:scale-[1.02]`}
-        >
-          <div className="flex items-center justify-between">
-            <span className="text-sm font-semibold text-slate-700">
-              Performance
-            </span>
+      <div className="relative mt-5 rounded-xl border border-slate-100 bg-slate-50 p-3">
+        <div className="flex items-center justify-between">
+          <span className="text-[11px] font-semibold text-slate-500">
+            Efficiency
+          </span>
 
-            <span className="rounded-full bg-white px-3 py-1 text-xs font-bold text-blue-600 shadow-sm">
-              Optimized
-            </span>
-          </div>
+          <span className="text-[11px] font-bold text-slate-700">88%</span>
+        </div>
 
-          <div className="mt-4 h-2 overflow-hidden rounded-full bg-white">
-            <motion.div
-              initial={{
-                width: 0,
-              }}
-              whileInView={{
-                width: "88%",
-              }}
-              viewport={{
-                once: true,
-              }}
-              transition={{
-                duration: 1,
-              }}
-              className={`h-full rounded-full bg-gradient-to-r ${gradients[icon]}`}
-            />
-          </div>
-
-          <div className="mt-3 flex items-center justify-between text-xs font-medium text-slate-500">
-            <span>Efficiency</span>
-
-            <span>88%</span>
-          </div>
+        <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-slate-200">
+          <motion.div
+            initial={{
+              width: 0,
+            }}
+            whileInView={{
+              width: "88%",
+            }}
+            viewport={{
+              once: true,
+            }}
+            transition={{
+              duration: 0.8,
+              delay: 0.15,
+            }}
+            className={`h-full rounded-full bg-gradient-to-r ${gradients[icon]}`}
+          />
         </div>
       </div>
 
-      {/* Decorative Accent */}
+      {/* Bottom Accent */}
 
-      <div className="absolute bottom-0 left-0 h-1 w-0 rounded-r-full bg-gradient-to-r from-blue-600 to-violet-600 transition-all duration-500 group-hover:w-full" />
+      <div className="absolute bottom-0 left-0 h-0.5 w-0 bg-gradient-to-r from-blue-600 to-violet-600 transition-all duration-500 group-hover:w-full" />
     </motion.article>
   );
 };

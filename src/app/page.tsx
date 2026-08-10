@@ -1,8 +1,8 @@
 import Navbar from "@/components/landing/Navbar";
 import Hero from "@/components/landing/Hero/";
 import Features from "@/components/landing/Features/Features";
-// import BentoGrid from "@/components/landing/BentoGrid";
-// import AISection from "@/components/landing/AISection";
+import BentoGrid from "@/components/landing/BentoGrid";
+import AISection from "@/components/landing/AISection";
 // import Stats from "@/components/landing/Stats";
 // import HowItWorks from "@/components/landing/HowItWorks";
 // import Testimonials from "@/components/landing/Testimonials";
@@ -17,8 +17,8 @@ export default function Home() {
       <Navbar />
       <Hero />
       <Features />
-      {/* <BentoGrid /> */}
-      {/* <AISection /> */}
+      <BentoGrid />
+      <AISection />
       {/* <Stats /> */}
       {/* <HowItWorks /> */}
       {/* <Testimonials /> */}

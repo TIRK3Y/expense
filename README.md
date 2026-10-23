@@ -1,36 +1,70 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ExpenseAI
 
-## Getting Started
+The front end for ExpenseAI, a planned personal finance application for tracking expenses, budgets and savings goals. The repository currently contains an animated marketing landing page and the authentication screens (login, sign-up and password reset), built with Next.js 16, React 19 and Tailwind CSS 4. The application dashboard and back-end integration have not been built yet.
 
-First, run the development server:
+## Features
+
+- Landing page made up of separate, animated sections: navigation bar, hero with a dashboard mock-up, features, bento grid, AI insights section, statistics, how it works, testimonials, pricing, FAQ, call to action and footer
+- Scroll and entrance animations with Framer Motion
+- Authentication pages under a shared route-group layout: `/login`, `/signup` and `/forgot-password`
+- Forms with password visibility toggles and "remember me" option
+- SEO metadata, Open Graph and Twitter card configuration in the root layout
+- React Compiler enabled in `next.config.ts`
+
+## Tech stack
+
+| Area | Technology |
+| --- | --- |
+| Framework | Next.js 16.3 (App Router) |
+| UI | React 19.2, Tailwind CSS 4 |
+| Language | TypeScript 5 |
+| Animation | Framer Motion |
+| Icons | lucide-react |
+
+`package.json` also declares Supabase, TanStack Query, Zustand, React Hook Form, Zod, Recharts, GSAP and related libraries in preparation for upcoming work; they are not yet used in the source code.
+
+## Getting started
+
+### Prerequisites
+
+- Node.js 20 or later
+- npm
+
+### Install and run
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000 in a browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Build
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm start
+```
 
-## Learn More
+## Project structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+src/
+  app/
+    (auth)/             Login, sign-up and forgot-password pages with a shared layout
+    layout.tsx          Root layout, fonts and site metadata
+    page.tsx            Landing page composed from section components
+  components/
+    auth/               Auth card, header, footer and form components
+    landing/            One folder per landing page section
+public/                 Static assets
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Notes
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- The authentication forms are not connected to a back end. Submitting a form only logs the values to the browser console; Supabase integration is marked as a TODO.
+- Content on the landing page (statistics, testimonials, pricing) is static placeholder copy.
 
-## Deploy on Vercel
+## License
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+No license has been specified for this project.
